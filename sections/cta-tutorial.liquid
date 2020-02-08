@@ -1,0 +1,45 @@
+<div>
+  <h2>{{ section.settings.text-box }}</h2>
+
+  <a href="{{ section.settings.link }}">
+    {{ section.settings.linktext }}
+  </a>
+</div>
+
+{% comment %}
+  Using: https://help.shopify.com/en/themes/development/sections#using-section-schema-tags
+  Types: https://help.shopify.com/en/themes/development/theme-editor/settings-schema#basic-input-setting-types
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Call to action",
+  "class": "my-cta-class",
+  "tag": "section",
+  "settings": [
+    {
+      "id": "text-box",
+      "type": "text",
+      "label": "Heading",
+      "default": "Title"
+    },
+    {
+      "id": "link",
+      "type": "url",
+      "label": "Link URL"
+    },
+    {
+      "id": "linktext",
+      "type": "text",
+      "label": "Link text",
+      "default": "Click here"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Call to Action",
+      "category": "Promotional"
+    }
+  ]
+}
+{% endschema %}

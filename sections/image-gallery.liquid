@@ -1,0 +1,41 @@
+
+{% for block in section.blocks %}
+<img src="{{section.settings.image | img_url: '1200x'}}" alt="{{ block.settings.image.alt }}">
+{%endfor%}
+
+{%schema%}
+{
+  "name": "My image gallery",
+  "class": "image-gallery",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Image"
+    }
+  ],
+   "blocks": [
+
+      {
+        "type": "image",
+        "name": "An Image",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          }
+        ]
+      }
+
+ ],
+  "presets": [
+    {
+      "name": "Image Gallery",
+      "category": "wood grain gallery"
+    }
+  ]
+}
+{%endschema%}

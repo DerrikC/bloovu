@@ -1,0 +1,41 @@
+<div class="banner-section">
+<div class="banner-image" style="background-image: url('{{section.settings.image | img_url: '1800x'}}');">
+
+
+{% if section.settings.subtitle != blank %}
+<p class="banner-subtitle">{{section.settings.subtitle}}</p>
+{% endif %}
+
+{% if section.settings.main_title != blank %}
+<h1 class="banner-title">{{section.settings.main_title}}</h1>
+{% endif %}
+
+</div>
+</div>
+
+{% schema %}
+  {
+      "name": "Banner",
+      "class": "banner-section",
+      "tag": "section",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Background Image"
+        },
+
+        {
+          "id": "subtitle",
+          "type": "text",
+          "label": "Subtitle"
+        },
+
+          {
+          "id": "main_title",
+          "type": "text",
+          "label": "Main Title"
+        }
+      ]
+  }
+{% endschema %}

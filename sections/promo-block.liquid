@@ -1,0 +1,49 @@
+
+{% for blocks in section.blocks %}
+
+<div class="promo-block-image" style="background-image: url('{{blocks.settings.image | img_url: '1800x'}}');">
+
+  {% if blocks.settings.subtitle != blank %}
+    <p class="promo-block-subtitle">{{blocks.settings.subtitle}}</p>
+  {% endif %}
+
+  {% if blocks.settings.main_title != blank %}
+    <h1 class="promo-block-title">{{blocks.settings.main_title}}</h1>
+  {% endif %}
+
+</div>
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Promo Blocks",
+    "class": "promo-blocks-section",
+    "tag": "section",
+    "max_blocks": 4,
+    "blocks": [
+      {
+        "type": "promo",
+        "name": "Promo Block",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Background Image"
+          },
+          {
+            "id": "subtitle",
+            "type": "text",
+            "label": "Subtitle"
+          },
+          {
+          "id": "main_title",
+          "type": "text",
+          "label": "Main Title"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+

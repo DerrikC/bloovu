@@ -1,0 +1,88 @@
+{%- comment -%}
+  - Example from: https://shopify.github.io/liquid-code-examples/example/collection-page
+  - Move Styles into an appropriate spot in your stylesheet (theme.scss.liquid)
+  - Apply this section to your landing page (page.summer-promotion.liquid)
+  - Set the Collection in the Theme Editor
+  - Update as you see fit.
+{%- endcomment -%}
+
+<style>
+  .featured-collection__wrapper {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 640px) {
+    .featured-collection__wrapper {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      max-width: 100%;
+    }
+  }
+
+  .featured-collection__item {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #f7f7f7;
+    padding: 20px;
+  }
+
+  @media screen and (min-width: 640px) {
+    .featured-collection__item {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      width: 25%;
+    }
+  }
+</style>
+
+<div class="featured-collection__item">
+  <a href="{{ collections[section.settings.collection_handle].url }}">
+    <h3>Featured Products</h3>
+    <p>The best of our store</p>
+  </a>
+</div>
+
+{% for product in collections[section.settings.collection_handle].products %}
+  <div class="featured-collection__item">
+    <a class="product-card" href="{{ product.url | within: collection }}">
+      <img src="{{ product.featured_image.src | img_url: '1024x' }}" alt="">
+      {{ product.title }}
+      <p>
+        <span aria-hidden="true">—</span>
+        {%- if product.price_varies -%}
+          <span class="visuallyhidden">Starting at</span>
+          {{ product.price_min | money_without_trailing_zeros }}
+          <span aria-hidden="true">+</span>
+        {%- else -%}
+          {{ product.price | money_without_trailing_zeros }}
+        {%- endif -%}
+      </p>
+    </a>
+  </div>
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "class": "featured-collection__wrapper",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection_handle",
+      "label": "Collection"
+    }
+  ]
+}
+{% endschema %}

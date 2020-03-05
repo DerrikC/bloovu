@@ -1,0 +1,86 @@
+{%- comment -%}
+  - Example from: https://shopify.github.io/liquid-code-examples/example/social-media-navigation
+  - Move Styles into an appropriate spot in your stylesheet (theme.scss.liquid)
+  - Apply this section to your landing page (page.summer-promotion.liquid)
+  - Replace social links to the ones set in the Theme Editor
+  - Update as you see fit.
+{%- endcomment -%}
+
+{{ 'social/social-icons.css' | global_asset_url | stylesheet_tag }}
+
+<style>
+  .social-media-menu {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+  }
+
+  .social-media-menu-item {
+    margin: 15px;
+  }
+
+  .social-media-menu [class^="shopify-social-icon-"] {
+    font-size: 30px;
+  }
+
+  @media screen and (min-width: 640px) {
+    .social-media-menu [class^="shopify-social-icon-"] {
+      font-size: 50px;
+    }
+  }
+</style>
+
+<div hidden>
+  <span id="new-window-0">Opens in a new window</span>
+</div>
+
+<ul class="social-media-menu">
+
+{%if settings.social_facebook_link != blank %}
+  <li class="social-media-menu-item">
+    <a href="{{settings.social_facebook_link}}"
+      target="_blank"
+      rel="noopener"
+      aria-label="Facebook"
+      aria-describedby="new-window-0">
+      <span class="shopify-social-icon-facebook-circle" aria-hidden="true"></span>
+    </a>
+  </li>
+  {% endif %}
+
+  {%if settings.social_twitter_link != blank %}
+  <li class="social-media-menu-item">
+    <a href="{{settings.social_twitter_link}}"
+      target="_blank"
+      rel="noopener"
+      aria-label="Twitter"
+      aria-describedby="new-window-0">
+      <span class="shopify-social-icon-twitter-circle" aria-hidden="true"></span>
+    </a>
+  </li>
+  {% endif %}
+
+ {%if settings.social_pinterest_link != blank %}
+  <li class="social-media-menu-item">
+    <a href="{{settings.social_pinterest_link}}"
+      target="_blank"
+      rel="noopener"
+      aria-label="Pinterest"
+      aria-describedby="new-window-0">
+      <span class="shopify-social-icon-pinterest-circle" aria-hidden="true"></span>
+    </a>
+  </li>
+    {% endif %}
+
+  {%if settings.social_instagram_link != blank %}
+  <li class="social-media-menu-item">
+    <a href="{{settings.social_instagram_link}}"
+      target="_blank"
+      rel="noopener"
+      aria-label="Instagram"
+      aria-describedby="new-window-0">
+      <span class="shopify-social-icon-instagram-circle" aria-hidden="true"></span>
+    </a>
+  </li>
+    {% endif %}
+</ul>

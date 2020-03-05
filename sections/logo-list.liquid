@@ -1,0 +1,131 @@
+{%- comment -%}
+  - Example from: https://shopify.github.io/liquid-code-examples/example/logo-list
+  - Move Styles into an appropriate spot in your stylesheet (theme.scss.liquid)
+  - Apply this section to your landing page (page.summer-promotion.liquid)
+  - Update as you see fit.
+{%- endcomment -%}
+
+<style>
+  .logo-bar__wrapper {
+    padding: 20px 5px;
+  }
+
+  @media screen and (min-width: 640px) {
+    .logo-bar__wrapper {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+  }
+
+  .logo-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    list-style-type: none;
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+
+  .logo-bar__item {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  @media screen and (min-width: 640px) {
+    .logo-bar__item {
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
+</style>
+
+<h2>{{ section.settings.title | escape }}</h2>
+
+{%- if section.blocks.size > 0 -%}
+  <ul class="logo-bar">
+    {%- for block in section.blocks -%}
+      <li class="logo-bar__item" {{ block.shopify_attributes }}>
+        {%- if block.settings.link != blank -%}
+          <a href="{{ block.settings.link }}">
+        {%- endif -%}
+
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | img_url: '160x160', scale: 2 | img_tag: block.settings.image.alt }}
+          {%- else -%}
+            {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+
+        {%- if block.settings.link != blank -%}
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Logo list",
+  "class": "logo-bar__wrapper",
+  "tag": "section",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Logo list"
+    },
+    {
+      "type": "select",
+      "id": "logo_width",
+      "label": "Logo width",
+      "default": "160px",
+      "options": [
+        {
+          "label": "Extra Small",
+          "value": "100px"
+        },
+        {
+          "label": "Small",
+          "value": "125px"
+        },
+        {
+          "label": "Medium",
+          "value": "160px"
+        },
+        {
+          "label": "Large",
+          "value": "175px"
+        },
+        {
+          "label": "Extra Large",
+          "value": "200px"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo_image",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Optional"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

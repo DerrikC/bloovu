@@ -1,0 +1,84 @@
+{%- comment -%}
+  - Example From: https://shopify.github.io/liquid-code-examples/example/homepage-quotes
+  - Move Styles into an appropriate spot in your stylesheet (theme.scss.liquid)
+  - Apply this section to your landing page (page.summer-promotion.liquid)
+  - Update as you see fit.
+{%- endcomment -%}
+
+<style>
+  .testimonial-section {
+    padding: 100px 20px;
+    text-align: center;
+    background-color: #f7f7f7;
+  }
+
+  @media screen and (min-width: 640px) {
+    .testimonial-section {
+      padding: 250px 20px;
+    }
+  }
+</style>
+
+<h2>{{ section.settings.title }}</h2>
+
+{%- if section.blocks.size > 0 -%}
+  {%- for block in section.blocks -%}
+    <blockquote>
+      {%- if block.settings.quote != blank -%}
+        <p>
+          {{ block.settings.quote }}
+        </p>
+      {%- endif -%}
+    </blockquote>
+
+    {%- if block.settings.author != blank -%}
+      <cite>
+        <a href="{{ block.settings.link }}">
+          {{ block.settings.author }}
+        </a>
+      </cite>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "class": "testimonial-section",
+  "tag": "section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Testimonials"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Text",
+          "default": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Author’s name"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

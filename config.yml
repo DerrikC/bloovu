@@ -1,0 +1,20 @@
+production:
+  password: 56ddfd22322fa25372e522155ca2b52b
+  theme_id: "85356675211"
+  store: derrikxavier-fanshawe.myshopify.com
+
+image-gallery:
+  password: 56ddfd22322fa25372e522155ca2b52b
+  theme_id: "85356675211"
+  store: derrikxavier-fanshawe.myshopify.com
+
+liquid-tutorial:
+  password: 56ddfd22322fa25372e522155ca2b52b
+  theme_id: "87037804683"
+  store: derrikxavier-fanshawe.myshopify.com
+# change theme id
+
+landing-page:
+  password: 56ddfd22322fa25372e522155ca2b52b
+  theme_id: "89716228235"
+  store: derrikxavier-fanshawe.myshopify.com

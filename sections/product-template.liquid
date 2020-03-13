@@ -128,6 +128,8 @@
             {% include 'product-price', variant: current_variant, show_vendor: section.settings.show_vendor %}
           </div>
 
+             <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+
           {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
             <div class="product__policies rte" data-product-policies>
               {%- if shop.taxes_included -%}
@@ -265,7 +267,9 @@
   </script>
 {% endunless %}
 
-
+<div id="shopify-product-reviews" data-id="{{product.id}}">
+  {{ product.metafields.spr.reviews }}
+</div>
 
 {% schema %}
 {

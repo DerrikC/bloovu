@@ -2,6 +2,8 @@ production:
   password: 56ddfd22322fa25372e522155ca2b52b
   theme_id: "85356675211"
   store: derrikxavier-fanshawe.myshopify.com
+  ignore_files:
+    - config/settings_data.json
 
 image-gallery:
   password: 56ddfd22322fa25372e522155ca2b52b
@@ -18,3 +20,19 @@ landing-page:
   password: 56ddfd22322fa25372e522155ca2b52b
   theme_id: "89716228235"
   store: derrikxavier-fanshawe.myshopify.com
+
+# testing below for product-reviews
+# change theme id
+# change password
+
+apps:
+  password: 56ddfd22322fa25372e522155ca2b52b
+  theme_id: "89716228235"
+  store: derrikxavier-fanshawe.myshopify.com
+
+product-reviews:
+  password: 56ddfd22322fa25372e522155ca2b52b
+  theme_id: "91663368331"
+  store: derrikxavier-fanshawe.myshopify.com
+  ignore_files:
+    - config/settings_data.json
